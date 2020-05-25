@@ -11,6 +11,7 @@ from mxnet import gluon, nd
 import mxnet as mx
 
 from . import transforms, dynamics, utils, resnet_style, plot
+from glob import glob
 import __main__
 
 class Cellpose():
@@ -62,7 +63,8 @@ class Cellpose():
             
         else:
             assert(model_type is not None)
-            self.pretrained_model = [os.fspath(os.path.join(model_dir, model_type))]
+            self.pretrained_model = [os.fspath(model_path) for model_path in glob(os.path.join(model_dir, model_type))]
+            [print(model_path) for model_path in self.pretrained_model]
             self.pretrained_size = os.fspath(os.path.join(pathlib.Path.home().joinpath('.cellpose', 'models'), 'size_nuclei_0.npy'))
             
             
