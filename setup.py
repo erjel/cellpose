@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="cellpose",
-    version="0.0.2.5",
+    version="0.0.2.8",
     license="BSD",
     author="Marius Pachitariu and Carsen Stringer",
     author_email="stringerc@janelia.hhmi.org",
@@ -16,8 +16,19 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires = ['numpy', 'scipy', 'natsort', 'Pillow<=7.0.0',
                         'tqdm', 'numba', 'scikit-image',
-                        'matplotlib', 'mxnet_mkl', 'opencv_python'],
-    extras_require = {'gui': ['pyqtgraph', 'PyQt5', 'google-cloud-storage']},
+                        'matplotlib', 'mxnet_mkl', 'opencv-python-headless'],
+    extras_require = {
+      "docs": [
+        'sphinx>=3.0',
+        'sphinxcontrib-apidoc',
+        'sphinx_rtd_theme',
+      ],
+      'gui': [
+        'pyqtgraph==0.11.0rc0', 
+        'PyQt5', 
+        'google-cloud-storage'
+        ]
+    },
     include_package_data=True,
     classifiers=(
         "Programming Language :: Python :: 3",
