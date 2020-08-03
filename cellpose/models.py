@@ -644,7 +644,7 @@ class CellposeModel():
         print('>>>> saving every %d epochs'%save_every)
         print('>>>> median diameter = %d'%self.diam_mean)
         print('>>>> LR: %0.5f, batch_size: %d, weight_decay: %0.5f'%(self.learning_rate, self.batch_size, self.weight_decay))
-        print('>>>> ntrain = %d'%nimg)
+        print('>>>> ntrain = %d'%nimg, flush=True)
         if run_test:
             print('>>>> ntest = %d'%len(test_data))
         print(train_data[0].shape)
@@ -736,10 +736,10 @@ class CellposeModel():
                         lavgt += nd.sum(loss).asscalar()
                         nsum+=len(loss)
                     print('Epoch %d, Time %4.1fs, Loss %2.4f, Loss Test %2.4f, LR %2.4f'%
-                            (iepoch, time.time()-tic, lavg, lavgt/nsum, LR))
+                            (iepoch, time.time()-tic, lavg, lavgt/nsum, LR), flush=True)
                 else:
                     print('Epoch %d, Time %4.1fs, Loss %2.4f, LR %2.4f'%
-                            (iepoch, time.time()-tic, lavg, LR))
+                            (iepoch, time.time()-tic, lavg, LR), flush=True)
                 lavg, nsum = 0, 0
 
             if save_path is not None:
@@ -747,7 +747,7 @@ class CellposeModel():
                     # save model at the end
                     file = 'cellpose_{}_{}_{}'.format(self.unet, file_label, d.strftime("%Y_%m_%d_%H_%M_%S.%f"))
                     ksave += 1
-                    print('saving network parameters')
+                    print('saving network parameters', flush=True)
                     self.net.save_parameters(os.path.join(file_path, file))
 
 class SizeModel():
