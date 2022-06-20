@@ -53,17 +53,17 @@ def use_gpu(gpu_number=0, use_torch=True):
         raise ValueError('cellpose only runs with pytorch now')
 
 def _use_gpu_torch(gpu_number=0):
-    try:
-        use_gpu = torch.cuda.is_available()
-        if torch.cuda.is_available():
-            return False
+    if not torch.cuda.is_available():
+        core_logger.info('** TORCH CUDA version not installed/working. **')
+        return False
+    elif gpu_number >= torch.cuda.device_count()
+        core_logger.info(f'** TORCH CUDA available but no device #{gpu_number} available. **')
+        return False
+    else:
         device = torch.device('cuda:' + str(gpu_number))
         _ = torch.zeros([1, 2, 3]).to(device)
         core_logger.info('** TORCH CUDA version installed and working. **')
         return True
-    except:
-        core_logger.info('TORCH CUDA version not installed/working.')
-        return False
 
 def assign_device(use_torch=True, gpu=False, device=0):
     if gpu and use_gpu(use_torch=True):
