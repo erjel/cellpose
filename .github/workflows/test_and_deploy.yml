@@ -45,10 +45,7 @@ jobs:
         run: |
           git clone --depth 1 https://www.github.com/pyvista/gl-ci-helpers.git
           powershell gl-ci-helpers/appveyor/install_opengl.ps1
-      # note: if you need dependencies from conda, considering using
-      # setup-miniconda: https://github.com/conda-incubator/setup-miniconda
-      # and
-      # tox-conda: https://github.com/tox-dev/tox-conda
+      - uses: conda-incubator/setup-miniconda@v2
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
