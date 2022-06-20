@@ -54,6 +54,9 @@ def use_gpu(gpu_number=0, use_torch=True):
 
 def _use_gpu_torch(gpu_number=0):
     try:
+        use_gpu = torch.cuda.is_available()
+        if torch.cuda.is_available():
+            return False
         device = torch.device('cuda:' + str(gpu_number))
         _ = torch.zeros([1, 2, 3]).to(device)
         core_logger.info('** TORCH CUDA version installed and working. **')
