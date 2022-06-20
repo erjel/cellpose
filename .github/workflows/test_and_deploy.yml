@@ -25,13 +25,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
       - name: Set up Python ${{ matrix.python-version }}
       - uses: conda-incubator/setup-miniconda@v2
         with:
           auto-update-conda: true
           python-version: ${{ matrix.python-version }}
-
       # these libraries, along with pytest-xvfb (added in the `deps` in tox.ini),
       # enable testing on Qt on linux
       - name: Install Linux libraries
