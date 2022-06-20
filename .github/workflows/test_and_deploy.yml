@@ -27,8 +27,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+      - uses: conda-incubator/setup-miniconda@v2
         with:
+          auto-update-conda: true
           python-version: ${{ matrix.python-version }}
 
       # these libraries, along with pytest-xvfb (added in the `deps` in tox.ini),
@@ -45,12 +46,9 @@ jobs:
         run: |
           git clone --depth 1 https://www.github.com/pyvista/gl-ci-helpers.git
           powershell gl-ci-helpers/appveyor/install_opengl.ps1
-      - uses: conda-incubator/setup-miniconda@v2
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install dask dask_image scikit-learn
-          pip install wheel setuptools tox tox-gh-actions
+          python -m pip install tox tox-gh-actions
       # this runs the platform-specific tests declared in tox.ini
       - name: Test with tox
         run: tox
