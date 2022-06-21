@@ -71,12 +71,6 @@ def test_class_3D(data_dir, image_names):
         clear_output(data_dir, image_names)
         
 def test_cli_2D(data_dir, image_names):
-    import torch
-    print(f'{torch.cuda.is_available()=}')
-    print('Check conda environment')
-    cmd_stdout = check_output('conda env export', stderr=STDOUT, shell=True).decode()
-    print(cmd_stdout)
-
     clear_output(data_dir, image_names)
     model_types = ['cyto']
     chan = [2]
