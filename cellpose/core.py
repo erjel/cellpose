@@ -56,7 +56,7 @@ def _use_gpu_torch(gpu_number=0):
     if not torch.cuda.is_available():
         core_logger.info('** TORCH CUDA version not installed/working. **')
         return False
-    elif gpu_number >= torch.cuda.device_count()
+    elif gpu_number >= torch.cuda.device_count():
         core_logger.info(f'** TORCH CUDA available but no device #{gpu_number} available. **')
         return False
     else:
