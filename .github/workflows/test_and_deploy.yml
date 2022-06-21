@@ -53,7 +53,9 @@ jobs:
       # this runs the platform-specific tests declared in tox.ini
       - name: Test with tox
         shell: bash -l {0}
-        run: tox
+        run: |
+          conda env list
+          tox
         env:
           PLATFORM: ${{ matrix.platform }}
 
