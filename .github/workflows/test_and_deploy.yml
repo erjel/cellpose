@@ -55,6 +55,7 @@ jobs:
         shell: bash -l {0}
         run: |
           conda env list
+          conda env export
           tox
         env:
           PLATFORM: ${{ matrix.platform }}
