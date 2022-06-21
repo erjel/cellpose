@@ -16,11 +16,12 @@ on:
 
 jobs:
   test:
-    name: ${{ matrix.platform }}
+    name: ${{ matrix.platform }} py${{ matrix.python-version }}
     runs-on: ${{ matrix.platform }}
     strategy:
       matrix:
         platform: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: [3.8]
 
     steps:
       - uses: actions/checkout@v2
